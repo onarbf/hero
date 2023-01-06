@@ -16,7 +16,7 @@ export default function DateHeader({date,setDate}){
             <div className="btn-toolbar w-100 ">
               <div className="input-group w-100">
                 <button className="btn btn-primary" onClick={(e)=>handleClick(e,'sub')}>Prev</button>
-                <div className="pt-2 mx-2 flex-grow-1 d-flex justify-content-center">
+                <div className="pt-2 flex-grow-1 d-flex justify-content-center border">
                   <h4> {format(date, 'MM/dd/yyyy')} </h4>
                 </div>
                 <button className="btn btn-primary" onClick={(e)=>handleClick(e,'add')}>Next</button>
