@@ -1,10 +1,8 @@
 import {removeFood, getFoods} from '../helpers/queries';
 
-export default function FoodListItem({ food , setFoods}) {
+export default function FoodListItem({ food , setFoods, setCaloriesConsumedPerDay}) {
     const handleClick = function (e) {
         const fetchData = async ()=>{
-            console.log('food',food)
-            console.log('removed');
             await removeFood({id: food._id})
             let data = await getFoods();
             setFoods(data);

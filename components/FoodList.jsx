@@ -3,13 +3,13 @@ import { useEffect } from "react";
 
 import FoodListItem from "./FoodListItem";
 export default function FoodList({date, foods, setFoods}) {
-  useEffect(()=>{
-    console.log('foods', foods)
-  },[foods])
 
   const renderFoodListItems = function (foods){
     return foods.map((food,key)=>{
-      return <FoodListItem food={food} setFoods={setFoods} key={key}/>
+      return <FoodListItem
+      food={food}
+      setFoods={setFoods}
+      key={key}/>
     })    
   }
   
