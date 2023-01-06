@@ -67,16 +67,6 @@ export default function Menu({ date, setFoods }) {
               })}>
               <span style={{fontSize:'1.4rem'}}>🥗</span>
             </button>
-
-
-            <button className="btn btn-light border-dark px-4 py-2 me-1 "
-              onClick={(e) => handleClick(e, {
-                date: date,
-                name: 'Trash food',
-                calories: 800
-              })}>
-              <span style={{fontSize:'1.4rem'}}>🍔</span>
-            </button>
           </div>
 
           <div className='d-flex flex-nowrap mt-2'>
