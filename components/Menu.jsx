@@ -17,7 +17,7 @@ export default function Menu({ date, setFoods }) {
   const handleClick = function (e, food) {
     const fetchData = async () => {
       await addFood(food);
-      let data = await getFoods();
+      let data = await getFoods({date});
       setFoods(data);
 
       setInputName('')

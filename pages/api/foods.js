@@ -4,7 +4,9 @@ import query from './_query';
 export default function handler(req, res) {
   const config = {
     method:'post',
-    url:'https://data.mongodb-api.com/app/data-frard/endpoint/data/v1/action/find'
+    url:'https://data.mongodb-api.com/app/data-frard/endpoint/data/v1/action/find',
+    document: '',
+    filter: {date: req.body.date }
   }
   
   query(config)

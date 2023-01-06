@@ -8,6 +8,7 @@ export default function FoodList({date, foods, setFoods}) {
     return foods.map((food,key)=>{
       return <FoodListItem
       food={food}
+      date={date}
       setFoods={setFoods}
       key={key}/>
     })    

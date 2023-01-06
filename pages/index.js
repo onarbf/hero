@@ -19,7 +19,8 @@ export default function Home({ data }) {
   useEffect(()=>{
     
     const fetchData = async ()=>{
-      let data = await getFoods();
+      console.log('date1',date);
+      let data = await getFoods({date});
       setFoods(data);
     }
 
@@ -42,7 +43,7 @@ export default function Home({ data }) {
     <PageLayout>
       <DateHeader date={date} setDate={setDate}/>
       <CaloriesCounter caloriesConsumedPerDay={caloriesConsumedPerDay} caloriesPerDay={caloriesPerDay}/>
-      <FoodList  foods={foods} setFoods={setFoods} />
+      <FoodList  foods={foods} date={date} setFoods={setFoods} />
       <Menu date={date} setFoods={setFoods}/>
     </PageLayout>
   )
