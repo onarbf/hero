@@ -22,7 +22,6 @@ export default function Menu({ date, setFoods }) {
 
       setInputName('')
       setInputCalories('')
-      console.log('input clean')
     }
 
     fetchData();
@@ -33,23 +32,51 @@ export default function Menu({ date, setFoods }) {
       <div className="col-md-4 ">
         <div className="card card-body mb-4">
           <div className='d-flex flex-nowrap'>
-            <button className="btn btn-primary px-4 py-2 me-1 "
+            <button className="btn btn-light border-dark px-4 py-2 me-1 "
               onClick={(e) => handleClick(e, {
                 date: date,
                 name: 'Beer',
                 calories: 56
               })}>
-              <i className="bi bi-cup-straw"></i>
+             <span style={{fontSize:'1.4rem'}}>🍺</span>
             </button>
-            <button className="btn btn-primary px-4 py-2 me-1 "
+            <button className="btn btn-light border-dark px-4 py-2 me-1 "
               onClick={(e) => handleClick(e, {
                 date: date,
-                name: 'Beer',
-                calories: 56
+                name: 'Coffee',
+                calories: 20
               })}>
-              <i className="bi bi-cup-straw"></i>
+              <span style={{fontSize:'1.4rem'}}>☕</span>
+            </button>
+            <button className="btn btn-light border-dark px-4 py-2 me-1 "
+              onClick={(e) => handleClick(e, {
+                date: date,
+                name: 'Health Potion',
+                calories: 647
+              })}>
+              <span style={{fontSize:'1.4rem'}}>🥣</span>
+            </button>
+            
+            
+
+            <button className="btn btn-light border-dark px-4 py-2 me-1 "
+              onClick={(e) => handleClick(e, {
+                date: date,
+                name: 'Monk Caprice',
+                calories: 350
+              })}>
+              <span style={{fontSize:'1.4rem'}}>🥗</span>
             </button>
 
+
+            <button className="btn btn-light border-dark px-4 py-2 me-1 "
+              onClick={(e) => handleClick(e, {
+                date: date,
+                name: 'Trash food',
+                calories: 800
+              })}>
+              <span style={{fontSize:'1.4rem'}}>🍔</span>
+            </button>
           </div>
 
           <div className='d-flex flex-nowrap mt-2'>
