@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export async function getFoods(){
-    let config = { url: 'http://localhost:3000/api/foods' };
+    let config = { url: '/api/foods' };
     let res = await axios(config);
     res = JSON.parse(res.data)
     console.log(res);
@@ -11,7 +11,7 @@ export async function getFoods(){
 
 export async function addFood(food){
     let config = {
-        url: 'http://localhost:3000/api/addFood',
+        url: '/api/addFood',
         method: 'POST',
         data: food};
     
@@ -24,7 +24,7 @@ export async function addFood(food){
 export async function removeFood({id}){
     console.log('id',id)
     let config = {
-        url: 'http://localhost:3000/api/removeFood',
+        url: '/api/removeFood',
         method: 'POST',
         data: {id: id}};
     

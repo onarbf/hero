@@ -14,10 +14,10 @@ export default function FoodList({date, foods, setFoods}) {
   }
   
   return (
-    <div className="container-md">
+    <div className="container-md mt-2">
       <div className="row justify-content-center">
         <div className="col-md-4 d-flex justify-content-center">
-          <div className="list-group w-75 ">
+          <div className="list-group w-100 ">
            {renderFoodListItems(foods)}
           </div>
         </div>

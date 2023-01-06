@@ -7,7 +7,6 @@ import PageLayout from "../components/PageLayout";
 import DateHeader from "../components/DateHeader";
 import Menu from "../components/Menu";
 import FoodList from '../components/FoodList';
-
 export default function Home({ data }) {
   const [date, setDate] = useState(startOfToday())
   const [foods,setFoods] = useState([]);
