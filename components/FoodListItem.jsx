@@ -1,10 +1,12 @@
 import {removeFood, getFoods} from '../helpers/queries';
-
+import { useSession} from "next-auth/react";
 export default function FoodListItem({ food , setFoods, date}) {
+
+    const { data: session } = useSession();
     const handleClick = function (e) {
         const fetchData = async ()=>{
             await removeFood({id: food._id})
-            let data = await getFoods({date});
+            let data = await getFoods({date, owner: session.user.email});
             setFoods(data);
           }
           
