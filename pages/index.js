@@ -7,17 +7,19 @@ import DateHeader from "../components/DateHeader";
 import Menu from "../components/Menu";
 import FoodList from '../components/FoodList';
 import CaloriesCounter from '../components/CaloriesCounter';
-import { getSession} from "next-auth/react";
+import { getSession, useSession} from "next-auth/react";
+
+
 export default function Home({ data }) {
+  const { data: session } = useSession();
   const [date, setDate] = useState(startOfToday())
   const [foods,setFoods] = useState([]);
   const [caloriesPerDay, setCaloriesPerDay] = useState(1880)
   const [caloriesConsumedPerDay, setCaloriesConsumedPerDay] = useState(0)
 
   useEffect(()=>{
-    
     const fetchData = async ()=>{
-      let data = await getFoods({date});
+      let data = await getFoods({date, owner: session.user.email});
       setFoods(data);
     }
 
@@ -28,7 +30,6 @@ export default function Home({ data }) {
     const fetchData = async ()=>{
 
     const consumedCalories = foods.reduce((accumulator,food)=>{
-      console.log(accumulator)
       return accumulator + food.calories
     },0)
     setCaloriesConsumedPerDay(consumedCalories);
@@ -49,7 +50,6 @@ export default function Home({ data }) {
 
 export async function getServerSideProps(context) {
   const session = await getSession(context)
-
   if (!session) {
     return {
       redirect: {

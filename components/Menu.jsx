@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { addFood, getFoods } from '../helpers/queries';
+import { useSession} from "next-auth/react"
 
 export default function Menu({ date, setFoods }) {
+  const { data: session } = useSession();
 
   const [inputName, setInputName] = useState('');
   const [inputCalories, setInputCalories] = useState('');
@@ -17,7 +19,7 @@ export default function Menu({ date, setFoods }) {
   const handleClick = function (e, food) {
     const fetchData = async () => {
       await addFood(food);
-      let data = await getFoods({date});
+      let data = await getFoods({date, owner: session.user.email});
       setFoods(data);
 
       setInputName('')
@@ -36,7 +38,8 @@ export default function Menu({ date, setFoods }) {
               onClick={(e) => handleClick(e, {
                 date: date,
                 name: 'Beer',
-                calories: 56
+                calories: 56,
+                owner: session.user.email
               })}>
              <span style={{fontSize:'1.4rem'}}>🍺</span>
             </button>
@@ -44,7 +47,8 @@ export default function Menu({ date, setFoods }) {
               onClick={(e) => handleClick(e, {
                 date: date,
                 name: 'Coffee',
-                calories: 20
+                calories: 20,
+                owner: session.user.email || undefined
               })}>
               <span style={{fontSize:'1.4rem'}}>☕</span>
             </button>
@@ -52,7 +56,8 @@ export default function Menu({ date, setFoods }) {
               onClick={(e) => handleClick(e, {
                 date: date,
                 name: 'Health Potion',
-                calories: 647
+                calories: 647,
+                owner: session.user.email || undefined
               })}>
               <span style={{fontSize:'1.4rem'}}>🥣</span>
             </button>
@@ -63,7 +68,8 @@ export default function Menu({ date, setFoods }) {
               onClick={(e) => handleClick(e, {
                 date: date,
                 name: 'Monk Caprice',
-                calories: 350
+                calories: 350,
+                owner: session.user.email || undefined
               })}>
               <span style={{fontSize:'1.4rem'}}>🥗</span>
             </button>

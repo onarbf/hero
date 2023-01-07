@@ -6,17 +6,15 @@ export default function handler(req, res) {
     method:'post',
     url:'https://data.mongodb-api.com/app/data-frard/endpoint/data/v1/action/find',
     document: '',
-    filter: {date: req.body.date }
+    filter: {date: req.body.date , owner: req.body.owner }
   }
   
   query(config)
   .then(function (response) {
       let res2 = JSON.stringify(response.data)
-      console.log(res2)
       res.status(200).json(res2)
   })
   .catch(function (error) {
-      console.log('error',error);
       return {props: {error}}
   });  
 }

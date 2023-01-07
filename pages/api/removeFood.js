@@ -1,7 +1,6 @@
 import query from './_query';
 
 export default function handler(req, res) {
-  console.log('yeyuuuyeyuuuyeyuuuyeyuuuyeyuuu',req.body)
   const config = {
     method:'post',
     url:'https://data.mongodb-api.com/app/data-frard/endpoint/data/v1/action/deleteOne',

@@ -1,15 +1,13 @@
 import axios from "axios";
 
-export async function getFoods({date}){
-    console.log('date2',date)
+export async function getFoods({date, owner}){
     let config = {
         url: '/api/foods',
         method: 'POST',
-        data: {date:date}};
+        data: {date, owner}};
 
     let res = await axios(config);
     res = JSON.parse(res.data)
-    console.log(res);
     return res.documents;
 }
 
@@ -22,7 +20,6 @@ export async function addFood(food){
     
     let res = await axios(config);
     res = JSON.parse(res.data)
-    console.log(res);
     return res.documents;
 }
 
@@ -35,6 +32,5 @@ export async function removeFood({id}){
     
     let res = await axios(config);
     res = JSON.parse(res.data)
-    console.log(res);
     return res.documents;
 }
