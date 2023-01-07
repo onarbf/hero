@@ -81,7 +81,8 @@ export default function Menu({ date, setFoods }) {
                 onClick={(e) => handleClick(e, {
                   date: date,
                   name: inputName,
-                  calories: Number(inputCalories)
+                  calories: Number(inputCalories),
+                  owner: session.user.email || undefined
                 })}
                 type="button" id="button-addon1">Add</button>
               <input type="text"
