@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import axios from 'axios';
 import {startOfToday} from  'date-fns';
 import {getFoods} from '../helpers/queries';
 
@@ -8,8 +7,7 @@ import DateHeader from "../components/DateHeader";
 import Menu from "../components/Menu";
 import FoodList from '../components/FoodList';
 import CaloriesCounter from '../components/CaloriesCounter';
-
-
+import { getSession} from "next-auth/react";
 export default function Home({ data }) {
   const [date, setDate] = useState(startOfToday())
   const [foods,setFoods] = useState([]);
@@ -19,7 +17,6 @@ export default function Home({ data }) {
   useEffect(()=>{
     
     const fetchData = async ()=>{
-      console.log('date1',date);
       let data = await getFoods({date});
       setFoods(data);
     }
@@ -39,6 +36,7 @@ export default function Home({ data }) {
 
     fetchData();
   },[foods])
+  
   return (
     <PageLayout>
       <DateHeader date={date} setDate={setDate}/>
@@ -47,4 +45,21 @@ export default function Home({ data }) {
       <Menu date={date} setFoods={setFoods}/>
     </PageLayout>
   )
+}
+
+export async function getServerSideProps(context) {
+  const session = await getSession(context)
+
+  if (!session) {
+    return {
+      redirect: {
+        destination: '/signin',
+        permanent: false,
+      },
+    }
+  }
+
+  return {
+    props: { session }
+  }
 }
