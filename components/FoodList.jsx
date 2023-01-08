@@ -18,7 +18,7 @@ export default function FoodList({date, foods, setFoods}) {
     <div className="container-md mt-2">
       <div className="row justify-content-center">
         <div className="col-md-4 d-flex justify-content-center">
-          <div className="list-group w-100 ">
+          <div className="list-group w-100 overflow-scroll border rounded-3" style={{height: 'calc(100% - 60px)'}}>
            {renderFoodListItems(foods)}
           </div>
         </div>
