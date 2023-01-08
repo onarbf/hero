@@ -37,8 +37,8 @@ export default function Menu({ date, setFoods }) {
             <button className="btn btn-light border-dark px-4 py-2 me-1 "
               onClick={(e) => handleClick(e, {
                 date: date,
-                name: 'Beer',
-                calories: 56,
+                name: 'Tercio de Mahou',
+                calories: 170,
                 owner: session.user.email
               })}>
              <span style={{fontSize:'1.4rem'}}>🍺</span>
@@ -46,8 +46,8 @@ export default function Menu({ date, setFoods }) {
             <button className="btn btn-light border-dark px-4 py-2 me-1 "
               onClick={(e) => handleClick(e, {
                 date: date,
-                name: 'Coffee',
-                calories: 20,
+                name: 'Café con leche desnatada',
+                calories: 47,
                 owner: session.user.email || undefined
               })}>
               <span style={{fontSize:'1.4rem'}}>☕</span>
@@ -55,8 +55,8 @@ export default function Menu({ date, setFoods }) {
             <button className="btn btn-light border-dark px-4 py-2 me-1 "
               onClick={(e) => handleClick(e, {
                 date: date,
-                name: 'Health Potion',
-                calories: 647,
+                name: 'Batch breakfast',
+                calories: 654 ,
                 owner: session.user.email || undefined
               })}>
               <span style={{fontSize:'1.4rem'}}>🥣</span>
@@ -67,8 +67,8 @@ export default function Menu({ date, setFoods }) {
             <button className="btn btn-light border-dark px-4 py-2 me-1 "
               onClick={(e) => handleClick(e, {
                 date: date,
-                name: 'Monk Caprice',
-                calories: 350,
+                name: 'Meal breakfast',
+                calories: 491,
                 owner: session.user.email || undefined
               })}>
               <span style={{fontSize:'1.4rem'}}>🥗</span>
@@ -94,6 +94,7 @@ export default function Menu({ date, setFoods }) {
               <input type="number"
               onChange={(e) => { handleInputChange(e, 'inputCalories') }}
               className="form-control" placeholder={"Calories"}
+              value={inputCalories}
               aria-describedby="button-addon2"
               />
             </div>
