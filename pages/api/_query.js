@@ -1,9 +1,8 @@
 import axios from 'axios';
 
-export default async function query({method, url, document,filter}){
-  
+export default async function query({collection = 'foods', method, url, document,filter}){
   const data =  {
-            "collection": "foods",
+            "collection": collection,
             "database": "hero-main",
             "dataSource": "hero-db"
           }

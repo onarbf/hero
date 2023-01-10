@@ -2,7 +2,7 @@ import { useState } from "react";
 import { addFood, getFoods } from '../helpers/queries';
 import { useSession} from "next-auth/react"
 
-export default function Menu({ date, setFoods }) {
+export default function Menu({ date, setFoods,caloriesPerDay }) {
   const { data: session } = useSession();
 
   const [inputName, setInputName] = useState('');
@@ -32,6 +32,29 @@ export default function Menu({ date, setFoods }) {
   return (<div className="container-md pt-4 fixed-bottom">
     <div className="row justify-content-center">
       <div className="col-md-4 ">
+        <div >
+          <div className="collapse" id="UserMenuCollapse">
+            <div className="card card-body mb-2">
+            <h5>Calories per day</h5>
+            <div className='d-flex'>
+              <button className="btn btn-primary me-2"
+                onClick={(e) => handleClick(e, {
+                  date: date,
+                  name: inputName,
+                  calories: Number(inputCalories),
+                  owner: session.user.email || undefined
+                })}
+                type="button" id="button-addon3">Change</button>
+              <input type="text"
+              onChange={(e) => { handleInputChange(e, 'inputName') }}
+              className="form-control"
+              value={caloriesPerDay}
+              aria-describedby="button-addon1" 
+              />
+            </div>
+            </div>
+          </div>
+        </div>
         <div className="card card-body mb-4">
           <div className='d-flex flex-nowrap'>
             <button className="btn btn-light border-dark px-4 py-2 me-1 "
@@ -73,6 +96,11 @@ export default function Menu({ date, setFoods }) {
               })}>
               <span style={{fontSize:'1.4rem'}}>🥗</span>
             </button>
+
+            <button className="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#UserMenuCollapse" aria-expanded="false" aria-controls="collapseWidthExample">
+              ⚙️
+              </button>
+
           </div>
 
           <div className='d-flex flex-nowrap mt-2'>

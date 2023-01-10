@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import {startOfToday} from  'date-fns';
-import {getFoods} from '../helpers/queries';
+import {getFoods,getUserByEmail} from '../helpers/queries';
 
 import PageLayout from "../components/PageLayout";
 import DateHeader from "../components/DateHeader";
@@ -19,7 +19,8 @@ export default function Home({ data }) {
 
   useEffect(()=>{
     const fetchData = async ()=>{
-      let data = await getFoods({date, owner: session.user.email});
+      console.log(session)
+      let data = await getFoods({date, owner: session.email});
       setFoods(data);
     }
 
@@ -43,7 +44,7 @@ export default function Home({ data }) {
       <DateHeader date={date} setDate={setDate}/>
       <CaloriesCounter caloriesConsumedPerDay={caloriesConsumedPerDay} caloriesPerDay={caloriesPerDay}/>
       <FoodList  foods={foods} date={date} setFoods={setFoods} />
-      <Menu date={date} setFoods={setFoods}/>
+      <Menu date={date} setFoods={setFoods} caloriesPerDay={caloriesPerDay}/>
     </PageLayout>
   )
 }
@@ -60,6 +61,6 @@ export async function getServerSideProps(context) {
   }
 
   return {
-    props: { session }
+    props: { ...session }
   }
 }

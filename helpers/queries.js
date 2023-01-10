@@ -34,3 +34,16 @@ export async function removeFood({id}){
     res = JSON.parse(res.data)
     return res.documents;
 }
+
+export async function getUserByEmail({email}){
+    console.log('1',email)
+    let config = {
+        url: 'http://localhost:3000/api/getUserByEmail',
+        method: 'POST',
+        
+        data: {email: email}};
+    
+    let res = await axios(config);
+    res = JSON.parse(res.data)
+    return res.documents;
+}
