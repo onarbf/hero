@@ -12,10 +12,10 @@ export default function SignIn() {
         <div className="row justify-content-center">
           <div className="col-md-4">
             <div className="card">
-              <h5 className="card-header">Be a Hero - Your calories is your healthbar</h5>
+              <h5 className="card-header">CalBar - Your calories is your healthbar</h5>
               <div className="card-body">
                 <p className="card-text">
-                  Welcome to a very powerfool tool! Use it with care, we dont want to make you to develop an Eating Disorder!
+                  Count your calories as you are the main character, with your own healthbar :D
                 </p>
                 {session ? (
                   <>

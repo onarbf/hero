@@ -2,9 +2,7 @@ import { useState } from "react";
 import { addFood, getFoods } from '../helpers/queries';
 import { useSession} from "next-auth/react"
 
-export default function Menu({ date, setFoods,caloriesPerDay }) {
-  const { data: session } = useSession();
-
+export default function Menu({ date, setFoods,caloriesPerDay, session }) {
   const [inputName, setInputName] = useState('');
   const [inputCalories, setInputCalories] = useState('');
 
@@ -37,18 +35,18 @@ export default function Menu({ date, setFoods,caloriesPerDay }) {
             <div className="card card-body mb-2">
             <h5>Calories per day</h5>
             <div className='d-flex'>
-              <button className="btn btn-primary me-2"
+              <button className="btn btn-primary me-2 disabled"
                 onClick={(e) => handleClick(e, {
                   date: date,
                   name: inputName,
                   calories: Number(inputCalories),
                   owner: session.user.email || undefined
                 })}
-                type="button" id="button-addon3">Change</button>
-              <input type="text"
-              onChange={(e) => { handleInputChange(e, 'inputName') }}
+                type="button " id="button-addon3">Change</button>
+              <input disabled type="text"
+              onChange={(e) => { }}
               className="form-control"
-              value={caloriesPerDay}
+              placeholder={'Still in dev. Come back later!'}
               aria-describedby="button-addon1" 
               />
             </div>

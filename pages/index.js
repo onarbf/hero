@@ -12,6 +12,7 @@ import { getSession, useSession} from "next-auth/react";
 
 export default function Home({ data }) {
   const { data: session } = useSession();
+  
   const [date, setDate] = useState(startOfToday())
   const [foods,setFoods] = useState([]);
   const [caloriesPerDay, setCaloriesPerDay] = useState(1880)
@@ -19,13 +20,16 @@ export default function Home({ data }) {
 
   useEffect(()=>{
     const fetchData = async ()=>{
-      console.log(session)
-      let data = await getFoods({date, owner: session.email});
+      if(session){
+        let data = await getFoods({date, owner: session.email});
       setFoods(data);
+      }else{
+
+      }
     }
 
     fetchData();
-  },[date])
+  },[date, session])
 
   useEffect(()=>{
     const fetchData = async ()=>{
@@ -44,7 +48,7 @@ export default function Home({ data }) {
       <DateHeader date={date} setDate={setDate}/>
       <CaloriesCounter caloriesConsumedPerDay={caloriesConsumedPerDay} caloriesPerDay={caloriesPerDay}/>
       <FoodList  foods={foods} date={date} setFoods={setFoods} />
-      <Menu date={date} setFoods={setFoods} caloriesPerDay={caloriesPerDay}/>
+      <Menu date={date} setFoods={setFoods} caloriesPerDay={caloriesPerDay} session={session}/>
     </PageLayout>
   )
 }

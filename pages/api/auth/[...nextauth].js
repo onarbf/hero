@@ -39,12 +39,10 @@ export const authOptions = {
       response = JSON.parse(response);
       console.log('response',response.document)
       return {
-        session: {
           user: {
             email: response.document.email,
             id: response.document._id
           }
-        }
       };
     },
   },
