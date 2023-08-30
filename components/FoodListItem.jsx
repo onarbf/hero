@@ -6,7 +6,7 @@ export default function FoodListItem({ food , setFoods, date}) {
     const handleClick = function (e) {
         const fetchData = async ()=>{
             await removeFood({id: food._id})
-            let data = await getFoods({date, owner: session.user.email});
+            let data = await getFoods({date, owner: 'onarbf@gmail.com'});
             setFoods(data);
           }
           

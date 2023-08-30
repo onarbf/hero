@@ -1,10 +1,13 @@
 import axios from "axios";
 
-export async function getFoods({date, owner}){
+export async function getFoods({ date, owner }) {
     let config = {
         url: '/api/foods',
         method: 'POST',
-        data: {date, owner}};
+        data: {
+            date, owner: 'onarbf@gmail.com'
+        }
+    };
 
     let res = await axios(config);
     res = JSON.parse(res.data)
@@ -12,37 +15,40 @@ export async function getFoods({date, owner}){
 }
 
 
-export async function addFood(food){
+export async function addFood(food) {
     let config = {
         url: '/api/addFood',
         method: 'POST',
-        data: food};
-    
+        data: food
+    };
+
     let res = await axios(config);
     res = JSON.parse(res.data)
     return res.documents;
 }
 
-export async function removeFood({id}){
-    
+export async function removeFood({ id }) {
+
     let config = {
         url: '/api/removeFood',
         method: 'POST',
-        data: {id: id}};
-    
+        data: { id: id }
+    };
+
     let res = await axios(config);
     res = JSON.parse(res.data)
     return res.documents;
 }
 
-export async function getUserByEmail({email}){
-    console.log('1',email)
+export async function getUserByEmail({ email }) {
+    console.log('1', email)
     let config = {
         url: 'http://localhost:3000/api/getUserByEmail',
         method: 'POST',
-        
-        data: {email: email}};
-    
+
+        data: { email: 'onarbf@gmail.com' }
+    };
+
     let res = await axios(config);
     res = JSON.parse(res.data)
     return res.documents;
