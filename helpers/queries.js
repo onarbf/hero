@@ -1,11 +1,12 @@
 import axios from "axios";
 
 export async function getFoods({ date, owner }) {
+    console.log('date', date)
     let config = {
         url: '/api/foods',
         method: 'POST',
         data: {
-            date, owner: 'onarbf@gmail.com'
+            date, owner
         }
     };
 
@@ -46,7 +47,7 @@ export async function getUserByEmail({ email }) {
         url: 'http://localhost:3000/api/getUserByEmail',
         method: 'POST',
 
-        data: { email: 'onarbf@gmail.com' }
+        data: { email }
     };
 
     let res = await axios(config);

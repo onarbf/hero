@@ -3,6 +3,7 @@ import { addFood, getFoods } from '../helpers/queries';
 import { useSession} from "next-auth/react"
 
 export default function Menu({ date, setFoods,caloriesPerDay, session }) {
+  console.log('session', session)
   const [inputName, setInputName] = useState('');
   const [inputCalories, setInputCalories] = useState('');
 
@@ -17,7 +18,7 @@ export default function Menu({ date, setFoods,caloriesPerDay, session }) {
   const handleClick = function (e, food) {
     const fetchData = async () => {
       await addFood(food);
-      let data = await getFoods({date, owner: 'onarbf@gmail.com'});
+      let data = await getFoods({date, owner: session.user.email});
       setFoods(data);
 
       setInputName('')
@@ -40,7 +41,7 @@ export default function Menu({ date, setFoods,caloriesPerDay, session }) {
                   date: date,
                   name: inputName,
                   calories: Number(inputCalories),
-                  owner: 'onarbf@gmail.com' || undefined
+                  owner: session.user.email || undefined
                 })}
                 type="button " id="button-addon3">Change</button>
               <input disabled type="text"
@@ -60,7 +61,7 @@ export default function Menu({ date, setFoods,caloriesPerDay, session }) {
                 date: date,
                 name: 'Tercio de Mahou',
                 calories: 170,
-                owner: 'onarbf@gmail.com'
+                owner: session.user.email || undefined
               })}>
              <span style={{fontSize:'1.4rem'}}>🍺</span>
             </button>
@@ -69,7 +70,7 @@ export default function Menu({ date, setFoods,caloriesPerDay, session }) {
                 date: date,
                 name: 'Café con leche desnatada',
                 calories: 47,
-                owner: 'onarbf@gmail.com' || undefined
+                owner:  session.user.email || undefined
               })}>
               <span style={{fontSize:'1.4rem'}}>☕</span>
             </button>
@@ -78,7 +79,7 @@ export default function Menu({ date, setFoods,caloriesPerDay, session }) {
                 date: date,
                 name: 'Batch breakfast',
                 calories: 654 ,
-                owner: 'onarbf@gmail.com' || undefined
+                owner: session.user.email || undefined
               })}>
               <span style={{fontSize:'1.4rem'}}>🥣</span>
             </button>
@@ -90,7 +91,7 @@ export default function Menu({ date, setFoods,caloriesPerDay, session }) {
                 date: date,
                 name: 'Meal breakfast',
                 calories: 491,
-                owner: 'onarbf@gmail.com' || undefined
+                owner: session.user.email || undefined
               })}>
               <span style={{fontSize:'1.4rem'}}>🥗</span>
             </button>
@@ -108,7 +109,7 @@ export default function Menu({ date, setFoods,caloriesPerDay, session }) {
                   date: date,
                   name: inputName,
                   calories: Number(inputCalories),
-                  owner: 'onarbf@gmail.com' || undefined
+                  owner: session.user.email || undefined
                 })}
                 type="button" id="button-addon1">Add</button>
               <input type="text"

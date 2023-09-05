@@ -1,4 +1,5 @@
 import NextAuth from "next-auth"
+import query from '../_query';
 import GoogleProvider from "next-auth/providers/google"
 import axios from "axios";
 
@@ -14,7 +15,8 @@ export const authOptions = {
     session: async (data) => {
 
       if (!data) return;
-      let email = 'onarbf@gmail.com';
+      console.log('data', data)
+      let email = data.session.user.email;
 
       console.log('email:', email);
 
@@ -35,8 +37,29 @@ export const authOptions = {
       }
 
       let res = await axios(config);
-      let response = JSON.stringify(res.data)
+
+      let response = await JSON.stringify(res.data)
+      console.log(response.document)
       response = JSON.parse(response);
+      if (!response.document) {
+
+        const config2 = {
+          collection: 'users',
+          method: 'post',
+          url: 'https://data.mongodb-api.com/app/data-frard/endpoint/data/v1/action/insertOne',
+          document: {
+            email
+          }
+        }
+
+        const qry = await query(config2)
+        console.log('query', qry)
+        let qryString = await JSON.stringify(qry.data);
+
+        console.log('query', qryString)
+      }
+
+
       console.log('response', response.document)
       return {
         user: {

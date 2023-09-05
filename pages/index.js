@@ -21,7 +21,7 @@ export default function Home({ data }) {
   useEffect(() => {
     const fetchData = async () => {
       if (session) {
-        let data = await getFoods({ date, owner: 'onarbf@gmail.com' });
+        let data = await getFoods({ date, owner: session.user.email });
         setFoods(data);
       } else {
 
@@ -55,7 +55,7 @@ export default function Home({ data }) {
 
 export async function getServerSideProps(context) {
   const session = await getSession(context)
-  if (session) {
+  if (!session) {
     return {
       redirect: {
         destination: '/signin',
